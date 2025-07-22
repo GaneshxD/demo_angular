@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>{{ title() }}</h1>
+  
+  <div class="counter-section">
+    <div class="counter-display">
+      <span class="count-number">{{ count() }}</span>
+    </div>
+    
+    <div class="button-section">
+      <button class="increment-btn" (click)="incrementCounter()">
+        Click Me!
+      </button>
+      
+      <button class="reset-btn" (click)="resetCounter()">
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+
+
