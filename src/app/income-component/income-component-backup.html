@@ -1,0 +1,42 @@
+<div class="income-tracker">
+  <h2>Income Tracker</h2>
+  
+  <div class="income-form">
+    <input 
+      type="number" 
+      [(ngModel)]="incomeAmount" 
+      placeholder="Enter income amount"
+      class="income-input"
+    >
+    <button 
+      (click)="addIncome()" 
+      class="add-income-btn"
+      [disabled]="!incomeAmount || incomeAmount <= 0"
+    >
+      Add Income
+    </button>
+  </div>
+  
+  <div class="income-display">
+    <h3>Total Income: ${{ totalIncome() }}</h3>
+  </div>
+  
+  <!-- Chart Section -->
+  <div class="chart-section" *ngIf="incomeEntries().length > 0">
+    <h4>Income Trend</h4>
+    <canvas #incomeChart width="400" height="200"></canvas>
+  </div>
+  <div>
+    <div class="chart-placeholder" *ngIf="incomeEntries().length === 0">
+      <p>No income entries yet. Start adding some!</p>
+    </div>
+  <div class="income-list" *ngIf="incomeEntries().length > 0">
+    <h4>Income History:</h4>
+    <ul>
+      <li *ngFor="let entry of incomeEntries()" class="income-item">
+        ${{ entry.amount }} - {{ entry.date | date:'short' }}
+        <button (click)="removeIncome(entry.id)" class="remove-btn">×</button>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { IncomeComponent } from './income-component/income-component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule],
+  imports: [IncomeComponent, CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

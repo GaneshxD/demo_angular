@@ -1,20 +1,93 @@
 <div class="container">
   <h1>{{ title() }}</h1>
   
-  <div class="counter-section">
-    <div class="counter-display">
-      <span class="count-number">{{ count() }}</span>
+  <!-- Dropdown Demo Section -->
+  <div class="dropdown-demo-section">
+    <h2>Interactive Dropdown Demo</h2>
+    
+    <div class="dropdown-grid">
+      <!-- Country Dropdown -->
+      <div class="dropdown-item">
+        <label for="country-select">Select Country:</label>
+        <select 
+          id="country-select" 
+          class="custom-dropdown"
+          [value]="selectedCountry()"
+          (change)="onCountryChange($event)"
+        >
+          <option value="">Choose a country...</option>
+          <option *ngFor="let country of countries" [value]="country.value">
+            {{ country.label }}
+          </option>
+        </select>
+        <div class="selection-display">
+          Selected: <span class="selected-value">{{ getSelectedCountryLabel() }}</span>
+        </div>
+      </div>
+      
+      <!-- Color Dropdown -->
+      <div class="dropdown-item">
+        <label for="color-select">Select Color:</label>
+        <select 
+          id="color-select" 
+          class="custom-dropdown"
+          [value]="selectedColor()"
+          (change)="onColorChange($event)"
+        >
+          <option value="">Choose a color...</option>
+          <option *ngFor="let color of colors" [value]="color.value">
+            {{ color.label }}
+          </option>
+        </select>
+        <div class="selection-display">
+          Selected: <span class="selected-value" [style.color]="selectedColor()">
+            {{ getSelectedColorLabel() }}
+          </span>
+        </div>
+      </div>
+      
+      <!-- Framework Dropdown -->
+      <div class="dropdown-item">
+        <label for="framework-select">Select Framework:</label>
+        <select 
+          id="framework-select" 
+          class="custom-dropdown"
+          [value]="selectedFramework()"
+          (change)="onFrameworkChange($event)"
+        >
+          <option value="">Choose a framework...</option>
+          <option *ngFor="let framework of frameworks" [value]="framework.value">
+            {{ framework.label }}
+          </option>
+        </select>
+        <div class="selection-display">
+          Selected: <span class="selected-value">{{ getSelectedFrameworkLabel() }}</span>
+        </div>
+      </div>
     </div>
     
-    <div class="button-section">
-      <button class="increment-btn" (click)="incrementCounter()">
-        Click Me!
-      </button>
-      
-      <button class="reset-btn" (click)="resetCounter()">
-        Reset
-      </button>
+    <!-- Summary Section -->
+    <div class="summary-section" *ngIf="selectedCountry() || selectedColor() || selectedFramework()">
+      <h3>Your Selections:</h3>
+      <div class="summary-grid">
+        <div *ngIf="selectedCountry()" class="summary-item">
+          <strong>Country:</strong> {{ getSelectedCountryLabel() }}
+        </div>
+        <div *ngIf="selectedColor()" class="summary-item">
+          <strong>Color:</strong> 
+          <span [style.color]="selectedColor()">{{ getSelectedColorLabel() }}</span>
+        </div>
+        <div *ngIf="selectedFramework()" class="summary-item">
+          <strong>Framework:</strong> {{ getSelectedFrameworkLabel() }}
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <!-- Placeholder for income component - temporarily removed -->
+  <div class="placeholder-section">
+    <h3>Income Component (Temporarily Disabled)</h3>
+    <p>Component will be re-enabled once main issues are resolved.</p>
   </div>
 </div>
 
